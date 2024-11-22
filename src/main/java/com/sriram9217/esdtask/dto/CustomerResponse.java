@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record CustomerResponse(
         @JsonProperty("id")
-        int id,
+        long id,
         @JsonProperty("first_name")
         String first_name,
         @JsonProperty("last_name")

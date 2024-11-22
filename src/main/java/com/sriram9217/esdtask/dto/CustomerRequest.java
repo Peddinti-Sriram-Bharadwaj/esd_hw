@@ -8,11 +8,8 @@ import jakarta.validation.constraints.NotNull;
 
 public record CustomerRequest (
 
-    @NotNull(message = "Customer id should not be null")
-    @NotEmpty(message = "customer id should not be empty")
-    @NotBlank(message = "customer id should not be blank")
     @JsonProperty("id")
-    int id,
+    long id,
 
     @NotNull(message = "Customer id should not be null")
     @NotEmpty(message = "customer id should not be empty")
@@ -32,7 +29,7 @@ public record CustomerRequest (
     @NotNull(message = "Customer id should not be null")
     @NotEmpty(message = "customer id shold not be empty")
     @NotBlank(message = "customer id should not be blank")
-    @JsonProperty("id")
+    @JsonProperty("password")
     String password
 )
 {
