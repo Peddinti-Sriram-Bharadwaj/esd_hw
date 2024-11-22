@@ -3,6 +3,7 @@ package com.sriram9217.esdtask.service;
 
 import com.sriram9217.esdtask.dto.CustomerRequest;
 import com.sriram9217.esdtask.dto.CustomerResponse;
+import com.sriram9217.esdtask.dto.LoginRequest;
 import com.sriram9217.esdtask.entity.Customer;
 import com.sriram9217.esdtask.exception.CustomerNotFoundException;
 import com.sriram9217.esdtask.mapper.CustomerMapper;
@@ -33,6 +34,17 @@ public class CustomerService {
     public CustomerResponse retrieveCustomer(long id) {
         Customer customer = getCustomer(id);
         return customerMapper.toCustomerResponse(customer);
+
+    }
+
+    public String login(LoginRequest request) {
+        Customer customer = getCustomer(request.id());
+        if(request.password().equals(customer.getPassword())) {
+            return "customer logged in successfully";
+        }
+        else{
+            return "wrong password";
+        }
 
     }
 
