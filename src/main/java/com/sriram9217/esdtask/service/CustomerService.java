@@ -1,13 +1,17 @@
 package com.sriram9217.esdtask.service;
 
 
+import com.sriram9217.esdtask.dto.AddProductRequest;
 import com.sriram9217.esdtask.dto.CustomerRequest;
 import com.sriram9217.esdtask.dto.CustomerResponse;
 import com.sriram9217.esdtask.dto.LoginRequest;
 import com.sriram9217.esdtask.entity.Customer;
+import com.sriram9217.esdtask.entity.Product;
 import com.sriram9217.esdtask.exception.CustomerNotFoundException;
 import com.sriram9217.esdtask.mapper.CustomerMapper;
+import com.sriram9217.esdtask.mapper.ProductMapper;
 import com.sriram9217.esdtask.repo.CustomerRepo;
+import com.sriram9217.esdtask.repo.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ import java.util.Optional;
 public class CustomerService {
     private final CustomerRepo customerRepo;
     private final CustomerMapper customerMapper;
+    private final ProductMapper productMapper;
+    private final ProductRepo productRepo;
 
     public String createCustomer(CustomerRequest request) {
         Customer customer = customerMapper.toCustomer(request);
@@ -48,11 +54,12 @@ public class CustomerService {
 
     }
 
-
-
-
-
-
-
-
+    public String addProduct(AddProductRequest request, long id) {
+        Product product = productMapper.toProduct(request);
+        productRepo.save(product);
+        Customer customer = getCustomer(id);
+        product.setCustomer(customer);
+        customer.getProducts().add(product);
+        return "product added successfully";
+    }
 }

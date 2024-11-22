@@ -16,12 +16,13 @@ public class CustomerMapper {
                 .lastName(request.lastName())
                 .email(request.email())
                 .password(request.password())
+                .products(request.products())
                 .build();
     }
 
     public CustomerResponse toCustomerResponse(Customer customer) {
         return new CustomerResponse(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getEmail(),
-                customer.getPassword());
+                customer.getPassword(), customer.getProducts());
     }
 
 }

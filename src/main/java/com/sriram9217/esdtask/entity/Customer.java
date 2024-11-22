@@ -1,10 +1,13 @@
 package com.sriram9217.esdtask.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -29,4 +32,11 @@ public class Customer {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @JsonProperty
+    @OneToMany(mappedBy = "id")
+    @Column(name = "products")
+    private List<Product> products;
+
+
 }

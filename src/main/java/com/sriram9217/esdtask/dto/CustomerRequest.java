@@ -1,10 +1,13 @@
 package com.sriram9217.esdtask.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sriram9217.esdtask.entity.Product;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 public record CustomerRequest (
 
@@ -30,7 +33,11 @@ public record CustomerRequest (
     @NotEmpty(message = "customer id shold not be empty")
     @NotBlank(message = "customer id should not be blank")
     @JsonProperty("password")
-    String password
+    String password,
+
+
+    @JsonProperty("products")
+    List<Product> products
 )
 {
 
