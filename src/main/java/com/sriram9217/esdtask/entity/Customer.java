@@ -34,9 +34,7 @@ public class Customer {
     private String password;
 
     @JsonProperty
-    @OneToMany(mappedBy = "id")
-    @Column(name = "products")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
-
-
 }
+
